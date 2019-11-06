@@ -10,3 +10,9 @@ Title:
 ### 2.1. structure
    (사진 ㄱㄱ)
    https://www.erdcloud.com
+   
+## 3. directory description
+### 3.1 /config  
+    contents about DB
+### 3.2 /config  
+    contents about DB
