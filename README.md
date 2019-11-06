@@ -2,10 +2,9 @@
 Title: 
 -------------------------------------
 ## 1. Start node
-### 1.1. install node and npm     (in ubuntu)
-    sudo apt-get update 
-    sudo apt-get install nodejs
-    sudo apt-get install npm
+### 1.1. install node and npm     
+    $ npm init
+    $ npm install express mysql --save --save-exact
     
 ## 2. Mysql
 ### 2.1. structure
