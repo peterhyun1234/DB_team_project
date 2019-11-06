@@ -1,0 +1,23 @@
+{
+  "name": "db_team_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterhyun1234/DB_team_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterhyun1234/DB_team_project/issues"
+  },
+  "homepage": "https://github.com/peterhyun1234/DB_team_project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "2.17.1"
+  }
+}
