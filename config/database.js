@@ -4,22 +4,22 @@ module.exports=(function(){
         local:{
             host:'localhost',
             user:'root',
-            password:'page159!',
+            password:'12345678',
             port:3306,  
-            database:'mojadol_DB00'
+            database:'test_db'
         },
         
         real:{
             host:'',
             user:'',
             password:'',
-            database:'mojadol_DB00'
+            database:'test_db'
         },
         dev:{
             host:'',
             user:'',
             password:'',
-            database:'mojadol_DB00'
+            database:'test_db'
         }
     }
 })();

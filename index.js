@@ -63,5 +63,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/files', express.static(__dirname + '/files'));
 
+//var a = 10;
+//var b = "현구 바보새끼";
+//console.log(a+b);
+
+
 module.exports = app;
 module.exports = router;
