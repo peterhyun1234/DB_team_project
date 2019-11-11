@@ -8,8 +8,7 @@ Title: Policy Referral Service
     
 ## 2. Mysql
 ### 2.1. structure
-   (사진 ㄱㄱ)
-   https://www.erdcloud.com
+![DB_project](https://user-images.githubusercontent.com/46476398/68565702-aa2efb80-0497-11ea-83d7-30ee7196ffb4.png)
    
 ## 3. directory description
 ### 3.1 /Java_code  
@@ -69,3 +68,6 @@ Title: Policy Referral Service
 		POST("http://49.236.136.213:3000/review/write_review", urlParameters);
 ```
 ## 5. Component structures
+![component_structure](https://user-images.githubusercontent.com/46476398/68565713-b0bd7300-0497-11ea-87e8-3da3ccea5608.png)
+
+## 6. 
