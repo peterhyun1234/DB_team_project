@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 // 자동정렬: ctrl + shift + f
-public class DBTEST {
+public class policy_app {
 
 	static String Input_str;
 	static String ID;
@@ -76,32 +76,49 @@ public class DBTEST {
 	}
 
 	private static void show_user_list() {
-		// TODO Auto-generated method stub
+
 		System.out.println("<1. 회원 목록 확인>");
 
-		GET("http://49.236.136.213:3000/user/show_all_users", "user");
+		GET("http://49.236.136.213:3000/temp/all_users", "user");
 	}
 
 	private static void show_user_interest() {
-		// TODO Auto-generated method stub
+
 		System.out.println("<2. 회원별 관심사 확인>");
+		GET("http://49.236.136.213:3000/temp/users_priority", "user");
 	}
 
 	private static void modify_policy() {
-		// TODO Auto-generated method stub
-		System.out.println("<3. 정책 세부사항 수정>");
-		String uID = scan.nextLine();
-		String p_code = scan.nextLine();
-		String contents = scan.nextLine();
 
-		String urlParameters = "review_uID =" + uID + "&p_code=" + p_code + "&contents=" + contents;
-		POST("http://49.236.136.213:3000/review/write_review", urlParameters);
+		System.out.println("<3. 정책 세부사항 수정>");
+		System.out.println("변경을 원하는 정책 번호:");
+		String get_p_code = scan.nextLine();
+		System.out.println("----- < 정책 번호: " + get_p_code + " > -----");
+		GET("http://49.236.136.213:3000/policy/" + get_p_code, "policy");
+		System.out.println("----------------------------");
+		String p_code = scan.nextLine();
+		String title = scan.nextLine();
+		String uri = scan.nextLine();
+		String apply_start = scan.nextLine();
+		String apply_end = scan.nextLine();
+		String start_age = scan.nextLine();
+		String end_age = scan.nextLine();
+		String contents = scan.nextLine();
+		String application_target = scan.nextLine();
+		String dor = scan.nextLine();
+		String si = scan.nextLine();
+		String expiration_flag = scan.nextLine();
+		// 2019.12.04
+		// API done, connection test required
+		// user API test required
+		String urlParameters = "p_code =" + p_code + "&title=" + title + "&uri=" + uri;
+		POST("http://49.236.136.213:3000/policy/modify_policy", urlParameters);
 	}
 
 	private static void show_user_request() {
-		// TODO Auto-generated method stub
-		System.out.println("<4. 사용자 요청 확인>");
 
+		System.out.println("<4. 사용자 요청 확인>");
+		GET("http://49.236.136.213:3000/request/show_all_reqs", "request");
 	}
 
 	// 사용자용 프로그램
@@ -214,11 +231,18 @@ public class DBTEST {
 
 	// REST API - GET
 	public static void GET(String requestURL, String table) {
-		String user[] = { "uID", "name", "region", "age", "Employment_sup_priority", "Startup_sup_priority",
+		String user[] = { "uID", "name", "dor", "si", "age", "Employment_sup_priority", "Startup_sup_priority",
 				"Life_welfare_priority", "Residential_financial_priority", "sex" };
-		String user_change[] = { "\n사용자 ID ", "사용자 이름 ", "사용자 사는 지역 ", "사용자 나이 ", "취업 관련 정책 선호도", "창업 관련 정책 선호도",
+		String user_change[] = { "\n사용자 ID", "사용자 이름", "사용자 사는 지역(대)", "사용자 사는 지역(소)", "사용자 나이", "취업 관련 정책 선호도", "창업 관련 정책 선호도",
 				"복지*생활 정책 선호도", "주거*금융 정책 선호도", "성" };
-
+		
+		String request[] = { "req_code", "req_uID", "req_category", "req_time", "req_contents", "req_flag"};
+		String request_change[] = { "\n요청 번호", "요청자 ID", "요청 분류", "요청 시간", "요청 내용", "처리 여부"};
+		
+		String policy[] = { "p_code", "title", "uri", "apply_start", "apply_end", "start_age", "end_age", "contents", 
+				"application_target", "dor", "si", "expiration_flag"};
+		String policy_change[] = { "\n정책 번호", "정책 제목", "신청 URI", "신청시작", "신청 마감", "최소 연령", "최대 연령", "내용", 
+				"정책 대상", "시행 지역(대)", "시행 지역(소)", "정책 만료 여부"};
 		try {
 
 			URL url = new URL(requestURL);
@@ -237,12 +261,28 @@ public class DBTEST {
 			while ((inputLine = br.readLine()) != null) {
 				String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s.: @_,]";
 				String convert = inputLine.replaceAll(match, "");
-
-				if (table == "user") {
-					for (int i = 0; i < user.length; i++) {
+				
+				
+				if (table == "user") // user table일 경우
+				{
+					for (int i = user.length-1; i >= 0; i--) {
 						convert = convert.replaceAll(user[i], user_change[i]);
 					}
 				}
+				else if(table == "request")
+				{
+					for (int i = request.length-1; i >= 0; i--) {
+						convert = convert.replaceAll(request[i], request_change[i]);
+					}					
+				}
+				else if(table == "policy")
+				{
+					for (int i = policy.length-1; i >= 0; i--) {
+						convert = convert.replaceAll(policy[i], policy_change[i]);
+					}					
+				}
+				
+				
 				String convertArray[] = convert.split(",");
 				int convert_arr_len = convertArray.length;
 				int cnt = 0;
