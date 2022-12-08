@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/peterhyun1234/DB_team_project#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "mysql": "2.17.1"
   }
 }
